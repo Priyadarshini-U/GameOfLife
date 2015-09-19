@@ -2,6 +2,8 @@ package com.tw.game;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class DeadCellTest {
@@ -22,5 +24,14 @@ public class DeadCellTest {
     public void shouldReturnZeroAsNoOfAliveNeighboursifNeighboursIsNull(){
         Cell cell = new AliveCell(4, null);
         assertEquals(cell.getNumberOfAliveNeighbours(), 0);
+    }
+
+    @Test
+    public void shouldReturnNeighbourListLenghtIfAllAreAliveCells() {
+        Cell cell = new AliveCell(4, new ArrayList<Cell>() {{
+            add(new AliveCell(0, null));
+            add(new AliveCell(0, null));
+        }});
+        assertEquals(cell.getNumberOfAliveNeighbours(), 2);
     }
 }

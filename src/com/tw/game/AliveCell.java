@@ -1,10 +1,12 @@
 package com.tw.game;
 
+import java.util.List;
+
 public class AliveCell implements Cell {
     private int aliveNeighbours;
-    private Cell[] neighbours;
+    private List<Cell> neighbours;
 
-    public AliveCell(int aliveNeighbours, Cell[] neighbours) {
+    public AliveCell(int aliveNeighbours, List<Cell> neighbours) {
         this.aliveNeighbours = aliveNeighbours;
         this.neighbours =neighbours;
     }
@@ -16,6 +18,8 @@ public class AliveCell implements Cell {
     }
 
     public int getNumberOfAliveNeighbours() {
+        if(neighbours != null)
+            return neighbours.size();
         return 0;
     }
 }
