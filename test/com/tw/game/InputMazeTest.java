@@ -33,4 +33,13 @@ public class InputMazeTest {
     public void shouldReturnCellNeighboursThatIsBeyondInputSizeAsNull(){
         assertEquals(new InputMaze(null).getCellNeighbours(1, 1), null);
     }
+
+    @Test
+    public void shouldReturnNonNullCellNeighboursThatIsWithInInputSize(){
+        char input[][] = {
+                {'x','-'},
+                {'x','-'}
+        };
+        assertFalse(new InputMaze(input).getCellNeighbours(1, 1) == null);
+    }
 }
