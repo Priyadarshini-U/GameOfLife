@@ -111,4 +111,17 @@ public class InputMazeTest {
 
         verify(inputMaze).getCell(1, 2);
     }
+
+    @Test
+    public void shouldReturnWithLeftNeighbor(){
+        char input[][] = {
+                {'x','-'},
+                {'x','-'}
+        };
+
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCellNeighbours(0, 1);
+
+        verify(inputMaze).getCell(1, 1);
+    }
 }
