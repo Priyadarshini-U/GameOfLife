@@ -1,5 +1,7 @@
 package com.tw.game;
 
+import java.util.List;
+
 public class InputMaze {
     private char[][] inputState;
 
@@ -17,5 +19,9 @@ public class InputMaze {
         }catch (Exception exception) {
             return null;
         }
+    }
+
+    public List<Cell> getCellNeighbours(int i, int j){
+        return null;
     }
 }

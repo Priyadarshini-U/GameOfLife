@@ -28,4 +28,9 @@ public class InputMazeTest {
         };
         assertEquals(new InputMaze(input).getCell(1,1).getClass(), DeadCell.class);
     }
+
+    @Test
+    public void shouldReturnCellNeighboursThatIsBeyondInputSizeAsNull(){
+        assertEquals(new InputMaze(null).getCellNeighbours(1, 1), null);
+    }
 }
