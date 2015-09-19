@@ -29,6 +29,7 @@ public class InputMaze {
             addToListIfObjectAddedNotNull(neighbours, getCell(i + 1, j));
             addToListIfObjectAddedNotNull(neighbours, getCell(i + 1, j + 1));
             addToListIfObjectAddedNotNull(neighbours, getCell(i + 1, j - 1));
+            addToListIfObjectAddedNotNull(neighbours, getCell(i , j - 1));
             return neighbours;
         } catch (Exception exception) {
             return null;
