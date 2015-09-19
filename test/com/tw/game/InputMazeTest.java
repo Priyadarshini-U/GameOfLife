@@ -2,56 +2,57 @@ package com.tw.game;
 
 import org.junit.Test;
 
-import java.io.InputStream;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class InputMazeTest {
 
     @Test
-    public void shouldReturnCellThatIsBeyondInputSizeAsNull(){
-        assertEquals(new InputMaze(null).getCell(1,1), null);
+    public void shouldReturnCellThatIsBeyondInputSizeAsNull() {
+        assertEquals(new InputMaze(null).getCell(1, 1), null);
     }
 
     @Test
-    public void shouldReturnAliveCellThatIsWithInInputSize(){
+    public void shouldReturnAliveCellThatIsWithInInputSize() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
-        assertEquals(new InputMaze(input).getCell(0,0).getClass(), AliveCell.class);
+        InputMaze inputMaze = new InputMaze(input);
+        Cell cell = inputMaze.getCell(0, 0);
+        assertEquals(cell.getClass(), AliveCell.class);
     }
 
     @Test
-    public void shouldReturnDeadCellThatIsWithInInputSizeAndCharIsHyphen(){
+    public void shouldReturnDeadCellThatIsWithInInputSizeAndCharIsHyphen() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
-        assertEquals(new InputMaze(input).getCell(1,1).getClass(), DeadCell.class);
+        assertEquals(new InputMaze(input).getCell(1, 1).getClass(), DeadCell.class);
     }
 
     @Test
-    public void shouldReturnCellNeighboursThatIsBeyondInputSizeAsNull(){
+    public void shouldReturnCellNeighboursThatIsBeyondInputSizeAsNull() {
         assertEquals(new InputMaze(null).getCellNeighbours(1, 1), null);
     }
 
     @Test
-    public void shouldReturnNonNullCellNeighboursThatIsWithInInputSize(){
+    public void shouldReturnNonNullCellNeighboursThatIsWithInInputSize() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
         assertFalse(new InputMaze(input).getCellNeighbours(1, 1) == null);
     }
 
     @Test
-    public void shouldReturnWithRightNeighbor(){
+    public void shouldReturnWithRightNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
@@ -61,10 +62,10 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnWithRightUpNeighbor(){
+    public void shouldReturnWithRightUpNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
@@ -74,10 +75,10 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnWithRightDownNeighbor(){
+    public void shouldReturnWithRightDownNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
@@ -87,10 +88,10 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnWithDownNeighbor(){
+    public void shouldReturnWithDownNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
@@ -100,10 +101,10 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnWithUpNeighbor(){
+    public void shouldReturnWithUpNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
@@ -113,10 +114,10 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnWithLeftNeighbor(){
+    public void shouldReturnWithLeftNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
@@ -126,10 +127,10 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnWithLeftUpNeighbor(){
+    public void shouldReturnWithLeftUpNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
@@ -139,15 +140,50 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnWithLeftDownNeighbor(){
+    public void shouldReturnWithLeftDownNeighbor() {
         char input[][] = {
-                {'x','-'},
-                {'x','-'}
+                {'x', '-'},
+                {'x', '-'}
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
         inputMaze.getCellNeighbours(1, 1);
 
         verify(inputMaze).getCell(0, 0);
+    }
+
+    @Test
+    public void shouldReturnAliveCellWithNeighboursOfInputWithInInputSize() {
+        char input[][] = {
+                {'x'}
+        };
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCell(0, 0);
+
+        verify(inputMaze).getCellNeighbours(0, 0);
+    }
+
+    @Test
+    public void shouldReturnDeadCellWithNeighboursThatIsWithInInputSizeAndCharIsHyphen() {
+        char input[][] = {
+                {'-', '-'}
+        };
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCell(0, 0);
+
+        verify(inputMaze).getCellNeighbours(0,0);
+    }
+
+    @Test
+    public void shouldCacheResultsAndNotCallAgainGetCellNeighboursAgain() {
+        char input[][] = {
+                {'x', '-'},
+                {'x', '-'}
+        };
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCell(0, 0);
+        inputMaze.getCell(0, 0);
+
+        verify(inputMaze, times(1)).getCellNeighbours(0,0);
     }
 }
