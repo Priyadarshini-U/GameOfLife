@@ -10,15 +10,20 @@ public class DeadCell extends Cell {
     }
 
     public Cell nextState() {
+        List<Cell> nextNeighbours = nextStateNeighbours();
+        int aliveNeighbours = getNumberOfAliveNeighbours();
+        if (aliveNeighbours == 3)
+            return new AliveCell(nextNeighbours);
+        return this;
+    }
+
+    public List<Cell> nextStateNeighbours(){
         List<Cell> nextNeighbours = null;
         if (neighbours != null) {
             nextNeighbours = new ArrayList<Cell>();
             for (Cell neighbour : neighbours)
                 nextNeighbours.add(neighbour.nextState());
         }
-        int aliveNeighbours = getNumberOfAliveNeighbours();
-        if (aliveNeighbours == 3)
-            return new AliveCell(nextNeighbours);
-        return this;
+        return nextNeighbours;
     }
 }
