@@ -18,8 +18,12 @@ public class DeadCell implements Cell{
     }
 
     public int getNumberOfAliveNeighbours() {
+        int numberOfAliveNeighbours = 0;
         if(neighbours != null)
-            return neighbours.size();
-        return 0;
+            for(Cell neighbour: neighbours) {
+                if(neighbour.getClass().equals(AliveCell.class))
+                    numberOfAliveNeighbours++;
+            }
+        return numberOfAliveNeighbours;
     }
 }

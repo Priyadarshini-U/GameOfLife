@@ -34,4 +34,14 @@ public class DeadCellTest {
         }});
         assertEquals(cell.getNumberOfAliveNeighbours(), 2);
     }
+
+    @Test
+    public void shouldReturnNumberOfAliveNeighbours() {
+        Cell cell = new AliveCell(4, new ArrayList<Cell>() {{
+            add(new AliveCell(0, null));
+            add(new AliveCell(0, null));
+            add(new DeadCell(0, null));
+        }});
+        assertEquals(cell.getNumberOfAliveNeighbours(), 2);
+    }
 }
