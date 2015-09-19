@@ -98,4 +98,17 @@ public class InputMazeTest {
 
         verify(inputMaze).getCell(1, 0);
     }
+
+    @Test
+    public void shouldReturnWithUpNeighbor(){
+        char input[][] = {
+                {'x','-'},
+                {'x','-'}
+        };
+
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCellNeighbours(0, 1);
+
+        verify(inputMaze).getCell(1, 2);
+    }
 }
