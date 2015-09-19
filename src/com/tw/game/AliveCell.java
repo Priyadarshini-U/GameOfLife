@@ -11,10 +11,12 @@ public class AliveCell implements Cell {
     }
 
     public Cell nextState() {
-        List<Cell> nextNeighbours = new ArrayList<Cell>();
-        if (neighbours != null)
-            nextNeighbours.add(neighbours.get(0).nextState());
-
+        List<Cell> nextNeighbours = null;
+        if (neighbours != null) {
+            nextNeighbours = new ArrayList<Cell>();
+            for (Cell neighbour : neighbours)
+                nextNeighbours.add(neighbour.nextState());
+        }
         int aliveNeighbours = getNumberOfAliveNeighbours();
         if ((aliveNeighbours < 2) || (aliveNeighbours > 3))
             return new DeadCell(nextNeighbours);
