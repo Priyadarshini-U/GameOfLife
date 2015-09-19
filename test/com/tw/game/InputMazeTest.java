@@ -12,11 +12,20 @@ public class InputMazeTest {
     }
 
     @Test
-    public void shouldReturnAliveCellThatIsWithInInputSizeAsNull(){
+    public void shouldReturnAliveCellThatIsWithInInputSize(){
         char input[][] = {
                 {'x','-'},
                 {'x','-'}
         };
-        assertEquals(new InputMaze(input).getCell(1,1).getClass(), AliveCell.class);
+        assertEquals(new InputMaze(input).getCell(0,0).getClass(), AliveCell.class);
+    }
+
+    @Test
+    public void shouldReturnDeadCellThatIsWithInInputSizeAndCharIsHyphen(){
+        char input[][] = {
+                {'x','-'},
+                {'x','-'}
+        };
+        assertEquals(new InputMaze(input).getCell(1,1).getClass(), DeadCell.class);
     }
 }

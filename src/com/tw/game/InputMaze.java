@@ -10,7 +10,10 @@ public class InputMaze {
     public Cell getCell(int i, int j){
         try {
             char c = inputState[i][j];
-            return new AliveCell(null);
+            if( c == 'x')
+                return new AliveCell(null);
+            else
+                return new DeadCell(null);
         }catch (Exception exception) {
             return null;
         }
