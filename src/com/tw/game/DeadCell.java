@@ -14,7 +14,8 @@ public class DeadCell implements Cell {
         List<Cell> nextNeighbours = null;
         if (neighbours != null) {
             nextNeighbours = new ArrayList<Cell>();
-            nextNeighbours.add(neighbours.get(0).nextState());
+            for (Cell neighbour : neighbours)
+                nextNeighbours.add(neighbour.nextState());
         }
         int aliveNeighbours = getNumberOfAliveNeighbours();
         if (aliveNeighbours == 3)
