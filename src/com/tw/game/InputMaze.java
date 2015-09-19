@@ -1,3 +1,4 @@
+//InputMaze has input and corresponding cells
 package com.tw.game;
 
 import java.util.ArrayList;

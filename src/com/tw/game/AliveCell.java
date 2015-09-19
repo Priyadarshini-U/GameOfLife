@@ -1,3 +1,4 @@
+//alive cell is alive currently
 package com.tw.game;
 
 import java.util.List;

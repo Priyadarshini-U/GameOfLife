@@ -1,3 +1,4 @@
+//cell has neighbours and gives its next state
 package com.tw.game;
 
 import java.util.ArrayList;
