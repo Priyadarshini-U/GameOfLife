@@ -10,43 +10,55 @@ public class AliveCellTest {
 
     @Test
     public void shouldReturnAliveState() {
-        Cell cell = new AliveCell(2, null);
+        Cell cell = new AliveCell(new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new DeadCell(null));
+        }});
         assertEquals(cell.nextState().getClass(), AliveCell.class);
     }
 
     @Test
     public void shouldReturnNextStateAsDeadIfAliveCellHasLessThanTwoAliveNeighbours() {
-        Cell cell = new AliveCell(1, null);
+        Cell cell = new AliveCell(new ArrayList<Cell>() {{
+            add(new DeadCell(null));
+        }});
         assertEquals(cell.nextState().getClass(), DeadCell.class);
     }
 
     @Test
     public void shouldReturnNextStateAsDeadIfAliveCellHasMoreThanThreeAliveNeighbours() {
-        Cell cell = new AliveCell(4, null);
+        Cell cell = new AliveCell(new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new DeadCell(null));
+        }});
         assertEquals(cell.nextState().getClass(), DeadCell.class);
     }
 
     @Test
     public void shouldReturnZeroAsNoOfAliveNeighboursifNeighboursIsNull() {
-        Cell cell = new AliveCell(4, null);
+        Cell cell = new AliveCell(null);
         assertEquals(cell.getNumberOfAliveNeighbours(), 0);
     }
 
     @Test
     public void shouldReturnNeighbourListLenghtIfAllAreAliveCells() {
-        Cell cell = new AliveCell(4, new ArrayList<Cell>() {{
-            add(new AliveCell(0, null));
-            add(new AliveCell(0, null));
+        Cell cell = new AliveCell(new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
         }});
         assertEquals(cell.getNumberOfAliveNeighbours(), 2);
     }
 
     @Test
     public void shouldReturnNumberOfAliveNeighbours() {
-        Cell cell = new AliveCell(4, new ArrayList<Cell>() {{
-            add(new AliveCell(0, null));
-            add(new AliveCell(0, null));
-            add(new DeadCell(0, null));
+        Cell cell = new AliveCell(new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new DeadCell(null));
         }});
         assertEquals(cell.getNumberOfAliveNeighbours(), 2);
     }

@@ -10,37 +10,42 @@ public class DeadCellTest {
 
     @Test
     public void shouldReturnDeadState() {
-        Cell cell = new DeadCell(4, null);
+        Cell cell = new DeadCell(null);
         assertEquals(cell.nextState().getClass(), DeadCell.class);
     }
 
     @Test
     public void shouldReturnNextStateAsAliveIfDeadCellHasExactlyThreeAliveNeighbours() {
-        Cell cell = new DeadCell(3, null);
+        Cell cell = new DeadCell(new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new DeadCell(null));
+        }});
         assertEquals(cell.nextState().getClass(), AliveCell.class);
     }
 
     @Test
     public void shouldReturnZeroAsNoOfAliveNeighboursifNeighboursIsNull(){
-        Cell cell = new AliveCell(4, null);
+        Cell cell = new DeadCell(null);
         assertEquals(cell.getNumberOfAliveNeighbours(), 0);
     }
 
     @Test
     public void shouldReturnNeighbourListLenghtIfAllAreAliveCells() {
-        Cell cell = new AliveCell(4, new ArrayList<Cell>() {{
-            add(new AliveCell(0, null));
-            add(new AliveCell(0, null));
+        Cell cell = new DeadCell(new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
         }});
         assertEquals(cell.getNumberOfAliveNeighbours(), 2);
     }
 
     @Test
     public void shouldReturnNumberOfAliveNeighbours() {
-        Cell cell = new AliveCell(4, new ArrayList<Cell>() {{
-            add(new AliveCell(0, null));
-            add(new AliveCell(0, null));
-            add(new DeadCell(0, null));
+        Cell cell = new DeadCell(new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new DeadCell(null));
         }});
         assertEquals(cell.getNumberOfAliveNeighbours(), 2);
     }
