@@ -2,7 +2,11 @@ package com.tw.game;
 
 import org.junit.Test;
 
+import java.io.InputStream;
+
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 public class InputMazeTest {
 
@@ -41,5 +45,18 @@ public class InputMazeTest {
                 {'x','-'}
         };
         assertFalse(new InputMaze(input).getCellNeighbours(1, 1) == null);
+    }
+
+    @Test
+    public void shouldReturnWithRightNeighbor(){
+        char input[][] = {
+                {'x','-'},
+                {'x','-'}
+        };
+
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCellNeighbours(0, 1);
+
+        verify(inputMaze).getCell(1,1);
     }
 }

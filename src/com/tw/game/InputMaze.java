@@ -25,9 +25,17 @@ public class InputMaze {
     public List<Cell> getCellNeighbours(int i, int j) {
         try {
             char c = inputState[i][j];
-            return new ArrayList<Cell>();
+            List<Cell> neighbours = new ArrayList<Cell>();
+            addToListIfObjectAddedNotNull(neighbours, getCell(i+1,j));
+            return neighbours;
         } catch (Exception exception) {
             return null;
         }
+    }
+
+    private  List<Cell> addToListIfObjectAddedNotNull(List<Cell> list, Cell cell){
+        if(cell != null)
+            list.add(cell);
+        return list;
     }
 }
