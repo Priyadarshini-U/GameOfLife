@@ -96,7 +96,7 @@ public class InputMazeTest {
         InputMaze inputMaze = spy(new InputMaze(input));
         inputMaze.getCellNeighbours(0, 1);
 
-        verify(inputMaze).getCell(1, 0);
+        verify(inputMaze).getCell(0, 0);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class InputMazeTest {
         InputMaze inputMaze = spy(new InputMaze(input));
         inputMaze.getCellNeighbours(0, 1);
 
-        verify(inputMaze).getCell(1, 2);
+        verify(inputMaze).getCell(0, 2);
     }
 
     @Test
@@ -120,8 +120,21 @@ public class InputMazeTest {
         };
 
         InputMaze inputMaze = spy(new InputMaze(input));
-        inputMaze.getCellNeighbours(0, 1);
+        inputMaze.getCellNeighbours(1, 1);
 
-        verify(inputMaze).getCell(1, 1);
+        verify(inputMaze).getCell(0, 1);
+    }
+
+    @Test
+    public void shouldReturnWithLeftUpNeighbor(){
+        char input[][] = {
+                {'x','-'},
+                {'x','-'}
+        };
+
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCellNeighbours(1, 1);
+
+        verify(inputMaze).getCell(0, 2);
     }
 }
