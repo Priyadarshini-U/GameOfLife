@@ -15,6 +15,8 @@ public class Cell {
         if (currentState.equals("alive"))
             if ((aliveNeighbours < 2) || (aliveNeighbours > 3))
                 return "dead";
+        if (currentState.equals("dead") && (aliveNeighbours == 3))
+            return "alive";
         return currentState;
     }
 }

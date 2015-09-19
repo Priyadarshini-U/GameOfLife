@@ -20,13 +20,19 @@ public class CellTest {
 
     @Test
     public void shouldReturnNextStateAsDeadIfAliveCellHasLessThanTwoAliveNeighbours(){
-        Cell cell = new Cell("alive",1,6);
+        Cell cell = new Cell("alive",1,7);
         assertEquals(cell.nextState(), "dead");
     }
 
     @Test
     public void shouldReturnNextStateAsDeadIfAliveCellHasMoreThanThreeAliveNeighbours(){
-        Cell cell = new Cell("alive",4,6);
+        Cell cell = new Cell("alive",4,4);
         assertEquals(cell.nextState(), "dead");
+    }
+
+    @Test
+    public void shouldReturnNextStateAsAliveIfDeadCellHasExactlyThreeAliveNeighbours(){
+        Cell cell = new Cell("dead",3,5);
+        assertEquals(cell.nextState(), "alive");
     }
 }
