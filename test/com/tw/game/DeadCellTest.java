@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class DeadCellTest {
 
@@ -48,5 +50,16 @@ public class DeadCellTest {
             add(new DeadCell(null));
         }});
         assertEquals(cell.getNumberOfAliveNeighbours(), 2);
+    }
+
+    @Test
+    public void shouldReflectNextStateOfFirstNeighbour() {
+        final Cell neighbour = mock(AliveCell.class);
+        Cell cell = new AliveCell(new ArrayList<Cell>() {{
+            add(neighbour);
+        }});
+
+        cell.nextState();
+        verify(neighbour).nextState();
     }
 }

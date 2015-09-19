@@ -1,5 +1,6 @@
 package com.tw.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeadCell implements Cell {
@@ -10,9 +11,14 @@ public class DeadCell implements Cell {
     }
 
     public Cell nextState() {
+        List<Cell> nextNeighbours = null;
+        if (neighbours != null) {
+            nextNeighbours = new ArrayList<Cell>();
+            nextNeighbours.add(neighbours.get(0).nextState());
+        }
         int aliveNeighbours = getNumberOfAliveNeighbours();
         if (aliveNeighbours == 3)
-            return new AliveCell(neighbours);
+            return new AliveCell(nextNeighbours);
         return this;
     }
 
