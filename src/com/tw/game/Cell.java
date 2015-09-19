@@ -12,6 +12,8 @@ public class Cell {
     }
 
     public String nextState() {
+        if(currentState.equals("alive") && aliveNeighbours < 2)
+            return "dead";
         return currentState;
     }
 }

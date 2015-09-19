@@ -17,4 +17,10 @@ public class CellTest {
         Cell cell = new Cell("alive",2,6);
         assertEquals(cell.nextState(), "alive");
     }
+
+    @Test
+    public void shouldReturnNextStateAsDeadIfAliveCellHasLessThanTwoAliveNeighbours(){
+        Cell cell = new Cell("alive",1,6);
+        assertEquals(cell.nextState(), "dead");
+    }
 }
