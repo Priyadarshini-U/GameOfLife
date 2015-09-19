@@ -8,6 +8,11 @@ public class InputMaze {
     }
 
     public Cell getCell(int i, int j){
-        return null;
+        try {
+            char c = inputState[i][j];
+            return new AliveCell(null);
+        }catch (Exception exception) {
+            return null;
+        }
     }
 }
