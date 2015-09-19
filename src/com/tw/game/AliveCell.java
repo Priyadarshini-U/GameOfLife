@@ -13,6 +13,6 @@ public class AliveCell extends Cell {
         int aliveNeighbours = getNumberOfAliveNeighbours();
         if ((aliveNeighbours < 2) || (aliveNeighbours > 3))
             return new DeadCell(nextNeighbours);
-        return this;
+        return new AliveCell(nextNeighbours);
     }
 }

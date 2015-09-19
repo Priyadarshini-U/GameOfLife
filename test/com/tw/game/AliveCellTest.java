@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.mockito.InOrder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -92,5 +93,44 @@ public class AliveCellTest {
         inOrder.verify(neighbour1).nextState();
         inOrder.verify(neighbour2).nextState();
         inOrder.verify(neighbour3).nextState();
+    }
+
+    @Test
+    public void shouldReflectNextStateOfAllNeighboursWhenNextStateIsAlive() {
+        List<Cell> neighbours = new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+        }};
+        Cell cell = new AliveCell(neighbours);
+
+        List<Cell> nextNeighbours = null;
+        if (neighbours != null) {
+            nextNeighbours = new ArrayList<Cell>();
+            for (Cell neighbour : neighbours)
+                nextNeighbours.add(neighbour.nextState());
+        }
+        Cell nextState = cell.nextState();
+        assertEquals(new AliveCell(nextNeighbours).getNumberOfAliveNeighbours(), nextState.getNumberOfAliveNeighbours());
+    }
+
+    @Test
+    public void shouldReflectNextStateOfAllNeighboursWhenNextStateIsDead() {
+        List<Cell> neighbours = new ArrayList<Cell>() {{
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+            add(new AliveCell(null));
+        }};
+        Cell cell = new AliveCell(neighbours);
+
+        List<Cell> nextNeighbours = null;
+        if (neighbours != null) {
+            nextNeighbours = new ArrayList<Cell>();
+            for (Cell neighbour : neighbours)
+                nextNeighbours.add(neighbour.nextState());
+        }
+        Cell nextState = cell.nextState();
+        assertEquals(new AliveCell(nextNeighbours).getNumberOfAliveNeighbours(), nextState.getNumberOfAliveNeighbours());
     }
 }
