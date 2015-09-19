@@ -5,15 +5,16 @@ public class Cell {
     private int aliveNeighbours;
     private int deadNeighbours;
 
-    public Cell(String currentState, int aliveNeighbours, int deadNeighbours){
+    public Cell(String currentState, int aliveNeighbours, int deadNeighbours) {
         this.currentState = currentState;
         this.aliveNeighbours = aliveNeighbours;
         this.deadNeighbours = deadNeighbours;
     }
 
     public String nextState() {
-        if(currentState.equals("alive") && aliveNeighbours < 2)
-            return "dead";
+        if (currentState.equals("alive"))
+            if ((aliveNeighbours < 2) || (aliveNeighbours > 3))
+                return "dead";
         return currentState;
     }
 }

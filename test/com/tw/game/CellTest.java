@@ -23,4 +23,10 @@ public class CellTest {
         Cell cell = new Cell("alive",1,6);
         assertEquals(cell.nextState(), "dead");
     }
+
+    @Test
+    public void shouldReturnNextStateAsDeadIfAliveCellHasMoreThanThreeAliveNeighbours(){
+        Cell cell = new Cell("alive",4,6);
+        assertEquals(cell.nextState(), "dead");
+    }
 }
