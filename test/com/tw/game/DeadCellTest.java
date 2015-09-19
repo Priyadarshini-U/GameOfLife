@@ -17,4 +17,10 @@ public class DeadCellTest {
         Cell cell = new DeadCell(3, null);
         assertEquals(cell.nextState().getClass(), AliveCell.class);
     }
+
+    @Test
+    public void shouldReturnZeroAsNoOfAliveNeighboursifNeighboursIsNull(){
+        Cell cell = new AliveCell(4, null);
+        assertEquals(cell.getNumberOfAliveNeighbours(), 0);
+    }
 }

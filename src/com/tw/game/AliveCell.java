@@ -14,4 +14,8 @@ public class AliveCell implements Cell {
             return new DeadCell(0, neighbours);
         return this;
     }
+
+    public int getNumberOfAliveNeighbours() {
+        return 0;
+    }
 }
