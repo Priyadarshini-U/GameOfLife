@@ -12,6 +12,6 @@ public class Cell {
     }
 
     public String nextState() {
-        return "dead";
+        return currentState;
     }
 }
