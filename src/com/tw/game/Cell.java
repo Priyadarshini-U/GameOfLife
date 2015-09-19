@@ -1,7 +1,19 @@
 package com.tw.game;
 
-public interface Cell {
-    Cell nextState();
+import java.util.List;
 
-    int getNumberOfAliveNeighbours();
+public abstract class Cell {
+    protected List<Cell> neighbours;
+
+    abstract Cell nextState();
+
+    public int getNumberOfAliveNeighbours() {
+        int numberOfAliveNeighbours = 0;
+        if (neighbours != null)
+            for (Cell neighbour : neighbours) {
+                if (neighbour.getClass().equals(AliveCell.class))
+                    numberOfAliveNeighbours++;
+            }
+        return numberOfAliveNeighbours;
+    }
 }
