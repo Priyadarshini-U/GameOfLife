@@ -57,6 +57,19 @@ public class InputMazeTest {
         InputMaze inputMaze = spy(new InputMaze(input));
         inputMaze.getCellNeighbours(0, 1);
 
-        verify(inputMaze).getCell(1,1);
+        verify(inputMaze).getCell(1, 1);
+    }
+
+    @Test
+    public void shouldReturnWithRightUpNeighbor(){
+        char input[][] = {
+                {'x','-'},
+                {'x','-'}
+        };
+
+        InputMaze inputMaze = spy(new InputMaze(input));
+        inputMaze.getCellNeighbours(0, 1);
+
+        verify(inputMaze).getCell(1, 2);
     }
 }
